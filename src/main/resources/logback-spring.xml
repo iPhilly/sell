@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<configuration>
+    <appender name="consoleLog" class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>
+                %d - %msg%n
+            </pattern>
+        </layout>
+    </appender>
+
+    <!--每日滚动日志-->
+    <appender name="fileInfoLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <encoder>
+            <pattern>
+                %msg%n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <!--滚动策略-->
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedFileNamingAndTriggeringPolicy">
+        <!--路径-->
+        <fileNamePattern>
+            /var/log/tomcat/sell/info.%d.log
+        </fileNamePattern>
+    </rollingPolicy>
+
+    <root level="info">
+        <appender ref="consoleLog" />
+    </root>
+
+</configuration>
